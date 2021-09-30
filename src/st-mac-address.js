@@ -19,6 +19,8 @@ import { NotImplementedError } from '../extensions/index.js';
   return /^[a-z]*$/gi.test(this);
 }
 
+let array = ['A', 'B', 'C', 'D', 'E', 'F'];
+
 export default function isMAC48Address(n) {
   let arr = n.split('-');
   if (arr.length !== 6) {
@@ -26,7 +28,7 @@ export default function isMAC48Address(n) {
   }
   let result = [];
   arr.forEach(el => {
-    if (el.length === 2 && ((Number(el[0]) >= 0 && Number(el[0]) <= 9) || el[0].toLowerCase().isAlpha()) && ((Number(el[1]) >= 0 && Number(el[1]) <=9) || el[1].toLowerCase().isAlpha())) {
+    if (el.length === 2 && ((Number(el[0]) >= 0 && Number(el[0]) <= 9) || (el[0].toLowerCase().isAlpha() && array.includes(el[0]))) && ((Number(el[1]) >= 0 && Number(el[1]) <=9) || (el[1].toLowerCase().isAlpha()) && array.includes(el[1]))) {
       result.push(el);
     }
   })
